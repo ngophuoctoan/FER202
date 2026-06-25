@@ -10,27 +10,72 @@ export function QuizProvider({ children }) {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  //màn hình cấu hình hay màn hình làm bài (QuizSetup or Quiz)
   const [isSetup, setIsSetup] = useState(true);
   const [answerFeedback, setAnswerFeedback] = useState(null);
-  const [displayQuestion, setDisplayQuestion] = useState(null);
+
+  const startQuiz = (newQuestions) => {
+    setQuestions(newQuestions);
+    setIsSetup(false);
+    setCurrentQuestion(0);
+    setSelectedAnswer("");
+    setScore(0);
+    setShowResult(false);
+    setAnswerFeedback(null);
+  };
+
+  const selectAnswer = (answer) => {
+    setSelectedAnswer(answer);
+  };
+
+  const submitAnswer = () => {
+    if (!selectedAnswer) return;
+    const displayQuestion = questions[currentQuestion];
+    const isCorrect = selectedAnswer === displayQuestion.correctAnswer;
+    if (isCorrect) {
+      setScore(score + 1);
+    }
+    setAnswerFeedback({
+      isCorrect: isCorrect,
+      message: isCorrect
+        ? "Chính xác!"
+        : "Sai rồi! Đáp án đúng là: " + displayQuestion.correctAnswer,
+    });
+  };
+
+  const nextQuestion = () => {
+    const nextIndex = currentQuestion + 1;
+    setSelectedAnswer("");
+    setAnswerFeedback(null);
+    if (nextIndex < questions.length) {
+      setCurrentQuestion(nextIndex);
+    } else {
+      setShowResult(true);
+    }
+  };
+
+  const restartQuiz = () => {
+    setCurrentQuestion(0);
+    setSelectedAnswer("");
+    setScore(0);
+    setShowResult(false);
+    setAnswerFeedback(null);
+    setIsSetup(true);
+  };
 
   const value = {
-    questions,
-    setQuestions,
-    currentQuestion,
-    setCurrentQuestion,
-    selectedAnswer,
-    setSelectedAnswer,
-    score,
-    setScore,
-    showResult,
-    setShowResult,
-    isSetup,
-    setIsSetup,
-    answerFeedback,
-    setAnswerFeedback,
-    displayQuestion,
-    setDisplayQuestion,
+    questions: questions,
+    currentQuestion: currentQuestion,
+    selectedAnswer: selectedAnswer,
+    score: score,
+    showResult: showResult,
+    isSetup: isSetup,
+    answerFeedback: answerFeedback,
+    startQuiz: startQuiz,
+    selectAnswer: selectAnswer,
+    submitAnswer: submitAnswer,
+    nextQuestion: nextQuestion,
+    restartQuiz: restartQuiz,
   };
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;

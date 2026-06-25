@@ -1,8 +1,10 @@
 import { useQuiz } from "../context/QuizContext";
 
 function Question({ onSubmit, onNext }) {
-  const { selectedAnswer, setSelectedAnswer, answerFeedback, displayQuestion } =
+  const { questions, currentQuestion, selectedAnswer, selectAnswer, answerFeedback } =
     useQuiz();
+
+  const displayQuestion = questions[currentQuestion];
 
   if (!displayQuestion) return null;
 
@@ -13,9 +15,9 @@ function Question({ onSubmit, onNext }) {
       <h2>{question}</h2>
 
       <div className="quiz-options">
-        {answers.map((option) => (
+        {answers.map((option, index) => (
           <label
-            key={option}
+            key={`${option}-${index}`}
             className={`quiz-option${selectedAnswer === option ? " selected" : ""}${
               answerFeedback
                 ? option === displayQuestion.correctAnswer
@@ -31,7 +33,7 @@ function Question({ onSubmit, onNext }) {
               name="answer"
               value={option}
               checked={selectedAnswer === option}
-              onChange={() => setSelectedAnswer(option)}
+              onChange={() => selectAnswer(option)}
               disabled={answerFeedback !== null}
             />
             {option}
