@@ -22,17 +22,19 @@
 
 .app-main {
   flex: 1;
+  padding-top: 20px;
   padding-bottom: 1rem;
 }
 
 .app-footer {
   background-color: #f8f9fa;
   border-top: 1px solid #dee2e6;
-  padding: 8px 0;
+  padding: 16px 24px;
 }
 
 .app-footer p {
   margin: 0;
+  line-height: 1.5;
 }
 
 .slide-image {
