@@ -1,0 +1,147 @@
+:root {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --border: #334155;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #fbbf24;
+  --danger: #f87171;
+  --radius: 12px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.app-header {
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+}
+
+.app-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.demo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+}
+
+.demo-card h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+}
+
+.count-display {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1.1rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: #0f172a;
+}
+
+button:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.quiz h3 {
+  margin: 0 0 1rem;
+}
+
+.progress {
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.options {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.options li {
+  margin-bottom: 0.5rem;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  cursor: pointer;
+}
+
+.options label.selected {
+  border-color: var(--accent);
+  background: rgba(251, 191, 36, 0.12);
+}
+
+.options input {
+  accent-color: var(--accent);
+}
+
+.score-screen {
+  text-align: center;
+}
+
+.score-text {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0.5rem 0 1.25rem;
+}
