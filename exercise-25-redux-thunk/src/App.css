@@ -1,0 +1,17 @@
+.app {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: #fff;
+}
+
+.card-title {
+  margin-bottom: 0.5rem;
+}
