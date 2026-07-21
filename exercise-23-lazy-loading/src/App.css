@@ -1,0 +1,73 @@
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+  font-family: system-ui, sans-serif;
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 0 0 1rem;
+  color: #334155;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+.loading {
+  padding: 1rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.posts-grid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+}
+
+.card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  text-transform: capitalize;
+}
+
+.card p {
+  margin: 0.35rem 0;
+  line-height: 1.45;
+  color: #1e293b;
+}
+
+.meta {
+  color: #64748b !important;
+  font-size: 0.9rem;
+}
+
+.user-card {
+  border-left: 3px solid #2563eb;
+}
+
+.post-card {
+  border-left: 3px solid #7c3aed;
+}
