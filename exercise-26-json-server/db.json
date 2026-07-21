@@ -1,0 +1,39 @@
+{
+  "cakes": [
+    {
+      "id": 1,
+      "name": "Chocolate Cake",
+      "image": "images/chocolate.png",
+      "price": 12.99,
+      "description": "Rich chocolate sponge with creamy frosting."
+    },
+    {
+      "id": 2,
+      "name": "Strawberry Cake",
+      "image": "images/strawberry.png",
+      "price": 14.5,
+      "description": "Light vanilla layers topped with fresh strawberries."
+    },
+    {
+      "id": 3,
+      "name": "Cheese Cake",
+      "image": "images/cheese.png",
+      "price": 15.0,
+      "description": "Classic New York style cheesecake."
+    },
+    {
+      "id": 4,
+      "name": "Matcha Cake",
+      "image": "images/matcha.png",
+      "price": 13.75,
+      "description": "Green tea flavored cake with white chocolate."
+    },
+    {
+      "id": 5,
+      "name": "Red Velvet Cake",
+      "image": "images/redvelvet.png",
+      "price": 16.25,
+      "description": "Soft red velvet with cream cheese frosting."
+    }
+  ]
+}
