@@ -1,0 +1,150 @@
+:root {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --border: #334155;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #a78bfa;
+  --danger: #f87171;
+  --radius: 12px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.app-header {
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+}
+
+.app-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.demo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+}
+
+.demo-card h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+}
+
+.theme-panel {
+  border: 1px solid;
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.theme-panel h3 {
+  margin: 0 0 0.5rem;
+}
+
+.theme-panel p {
+  margin: 0 0 1rem;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: #0f172a;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #1a0a0a;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+}
+
+.btn-clear {
+  margin-top: 0.75rem;
+  background: #fb923c;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 700px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dishes-list ul,
+.cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+
+.dishes-list li,
+.cart li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background: var(--bg);
+}
+
+.price {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.dishes-list h3,
+.cart h3 {
+  margin: 0;
+}
