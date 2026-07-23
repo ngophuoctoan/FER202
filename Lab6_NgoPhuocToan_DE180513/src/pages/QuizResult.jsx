@@ -1,13 +1,15 @@
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import PageBanner from '../components/PageBanner'
+import { resetQuiz } from '../store/quizSlice'
 
 function QuizResult() {
-  const { questions, answers, submitted, results } = useSelector(
-    (state) => state.quiz,
-  )
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  // Dùng results từ Redux Thunk (checkAnswers) — đúng yêu cầu Lab
+  const { questions, submitted, results } = useSelector((state) => state.quiz)
 
   if (!submitted) {
     return (
@@ -15,7 +17,7 @@ function QuizResult() {
         <PageBanner title="Quiz Review" />
         <div className="quiz-content">
           <p>You have not submitted the quiz yet.</p>
-          <Link to="/quizzes" className="btn btn-info text-white">
+          <Link to="/quizzes" className="btn btn-info">
             Go to Quiz
           </Link>
         </div>
@@ -25,8 +27,14 @@ function QuizResult() {
 
   const correctCount = results.filter((r) => r.isCorrect).length
 
+  function handleReset() {
+    dispatch(resetQuiz())
+    navigate('/quizzes')
+  }
+
   return (
     <div className="quiz-page">
+      {/* Screenshot đề: /quiz/result vẫn hiện banner "Quiz Review" */}
       <PageBanner title="Quiz Review" />
 
       <div className="quiz-content">
@@ -35,28 +43,28 @@ function QuizResult() {
           <strong>{questions.length}</strong> questions.
         </p>
 
-        {questions.map((q, index) => {
-          const selected = answers[q.id]
-          const isCorrect = selected === q.correctAnswer
+        {results.map((result, index) => {
+          const question = questions.find((q) => q.id === result.questionId)
+          if (!question) return null
 
           return (
             <div
-              key={q.id}
-              className={`result-card${isCorrect ? ' correct' : ' wrong'}`}
+              key={result.questionId}
+              className={`result-card${result.isCorrect ? ' correct' : ' wrong'}`}
             >
               <h5 className="result-question">
-                Q{index + 1}. {q.question}
+                Q{index + 1}. {question.question}
               </h5>
 
               <div className="result-options">
-                {q.options.map((option) => (
+                {question.options.map((option) => (
                   <Form.Check
                     key={option}
                     type="radio"
-                    name={`result-${q.id}`}
-                    id={`result-${q.id}-${option}`}
+                    name={`result-${result.questionId}`}
+                    id={`result-${result.questionId}-${option}`}
                     label={option}
-                    checked={selected === option}
+                    checked={result.selected === option}
                     readOnly
                     disabled
                   />
@@ -64,19 +72,22 @@ function QuizResult() {
               </div>
 
               <div className="result-answer-bar">
-                Right answer is: <strong>{q.correctAnswer}</strong>
+                Right answer is: <strong>{result.correctAnswer}</strong>
               </div>
             </div>
           )
         })}
 
-        <div className="mt-3 mb-4">
+        <div className="mt-3 mb-4 d-flex flex-wrap gap-2">
           <Link to="/quizzes">
-            <Button className="quiz-action-btn me-2">Quiz</Button>
+            <Button className="quiz-action-btn">Quiz</Button>
           </Link>
           <Link to="/quiz/review">
             <Button className="quiz-action-btn">Quiz Review</Button>
           </Link>
+          <Button className="quiz-action-btn" onClick={handleReset}>
+            Reset Quiz
+          </Button>
         </div>
       </div>
     </div>

@@ -10,9 +10,13 @@ function QuizFooter() {
   const { answers, questions, status } = useSelector((state) => state.quiz)
 
   const answeredCount = Object.keys(answers).length
-  const allAnswered = answeredCount === questions.length
+  const allAnswered = questions.length > 0 && answeredCount === questions.length
 
   async function handleSubmit() {
+    if (questions.length === 0) {
+      alert('Questions are still loading. Please wait.')
+      return
+    }
     if (!allAnswered) {
       alert('Please answer all questions before submitting.')
       return

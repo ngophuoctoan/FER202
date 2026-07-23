@@ -18,14 +18,14 @@ export const questions = [
   },
   {
     id: 3,
-    question: 'Which of the following is an advantage of using JavaScript?',
+    question: "Which of the following can't be done with client-side JavaScript?",
     options: [
-      'Less server interaction',
-      'Immediate feedback to the visitors',
-      'Increased interactivity',
-      'All of the above',
+      'Validating a form',
+      "Sending a form's contents by email",
+      "Storing the form's contents to a database file on the server",
+      'None of the above',
     ],
-    correctAnswer: 'All of the above',
+    correctAnswer: "Storing the form's contents to a database file on the server",
   },
   {
     id: 4,

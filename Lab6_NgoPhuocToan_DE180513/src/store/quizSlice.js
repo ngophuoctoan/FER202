@@ -30,7 +30,8 @@ export const checkAnswers = createAsyncThunk(
 )
 
 const initialState = {
-  questions: quizData,
+  // Ban đầu rỗng — load qua fetchQuestions (Redux Thunk)
+  questions: [],
   currentIndex: 0,
   answers: {},
   submitted: false,

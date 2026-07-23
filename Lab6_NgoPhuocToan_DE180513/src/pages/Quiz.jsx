@@ -1,8 +1,10 @@
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Button from 'react-bootstrap/Button'
 import PageBanner from '../components/PageBanner'
 import QuizFooter from '../components/QuizFooter'
 import {
+  fetchQuestions,
   selectAnswer,
   firstQuestion,
   prevQuestion,
@@ -12,7 +14,39 @@ import {
 
 function Quiz() {
   const dispatch = useDispatch()
-  const { questions, currentIndex, answers } = useSelector((state) => state.quiz)
+  const { questions, currentIndex, answers, status, error } = useSelector(
+    (state) => state.quiz,
+  )
+
+  // Load câu hỏi bằng Redux Thunk (createAsyncThunk)
+  useEffect(() => {
+    if (questions.length === 0) {
+      dispatch(fetchQuestions())
+    }
+  }, [dispatch, questions.length])
+
+  if (status === 'loading' || (status === 'idle' && questions.length === 0)) {
+    return (
+      <div className="quiz-page">
+        <PageBanner title="JavaScript Quiz" />
+        <div className="quiz-content">
+          <p>Loading questions...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (status === 'failed') {
+    return (
+      <div className="quiz-page">
+        <PageBanner title="JavaScript Quiz" />
+        <div className="quiz-content">
+          <p>Failed to load questions: {error}</p>
+          <Button onClick={() => dispatch(fetchQuestions())}>Retry</Button>
+        </div>
+      </div>
+    )
+  }
 
   const question = questions[currentIndex]
   if (!question) {
